@@ -1,4 +1,4 @@
-# constant product automated market maker arbitraage bot with ML
+# constant product automated market maker arbitrage bot with ML
 
 This project aims to show that short term patterns in our Automated Market Maker's (AMM) reserve balances, price differences, and recent swapping volumes contain signals to predict when a price divergence between our pool and a reference pool will exceed the fees.
 
