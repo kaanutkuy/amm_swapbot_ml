@@ -6,8 +6,8 @@ interface IERC20 {
 }
 
 contract AMM {
-    IERC20 public token0;
-    IERC20 public token1;
+    IERC20 public immutable token0;
+    IERC20 public immutable token1;
     uint112 private reserve0;
     uint112 private reserve1;
 
@@ -46,7 +46,7 @@ contract AMM {
         uint reserveIn  = isToken0 ? _reserve0 : _reserve1;
         uint reserveOut = isToken0 ? _reserve1 : _reserve0;
 
-        // Apply 0.3% fee
+        // apply 0.3% fee
         uint amountInWithFee = amountIn * 997 / 1000;
         uint numerator   = amountInWithFee * reserveOut;
         uint denominator = reserveIn + amountInWithFee;
