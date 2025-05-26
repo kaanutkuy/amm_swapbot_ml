@@ -47,9 +47,6 @@ for i in range(5):
     send_tx(amm.functions.swap, os.getenv("TOKEN0_ADDRESS"), 10**18)
     send_tx(amm.functions.swap, os.getenv("TOKEN1_ADDRESS"), 10**18)
 
-# fetch all Swap events
-#events = amm.events.Swapped.createFilter(fromBlock=0, toBlock="latest").get_all_entries()
-
 # pull all logs from the AMM address
 logs = w3.eth.get_logs({
     "fromBlock": 0,
@@ -63,11 +60,11 @@ events = [amm.events.Swapped().process_log(log) for log in logs]
 rows = []
 for e in events:
     rows.append({
-        "blockNumber":  e.blockNumber,
-        "trader":       e.args.trader,
-        "tokenIn":      e.args.tokenIn,
-        "amountIn":     e.args.amountIn,
-        "amountOut":    e.args.amountOut
+        "blockNumber": e.blockNumber,
+        "trader": e.args.trader,
+        "tokenIn": e.args.tokenIn,
+        "amountIn": e.args.amountIn,
+        "amountOut": e.args.amountOut
         })
 
 df = pd.DataFrame(rows)
